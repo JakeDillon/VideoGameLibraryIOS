@@ -49,6 +49,22 @@ class GameListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         return cell
     }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { _, _ in
+            // Remove the game at the current index from our game array
+            GameManager.sharedInstance.removeGame(at: indexPath.row)
+            // Delete the row from the table view at the current index path
+            tableView.deleteRows(at: [indexPath], with: .bottom)
+        }
+        let gameForIndex = GameManager.sharedInstance.getGame(at: indexPath.row)
+        let title = gameForIndex.checkedIn ? "Checked Out" : "Checked In"
+        let checkOutOrINAction = UITableViewRowAction(style: .normal, title: title) {
+            _, _ in
+            GameManager.sharedInstance.checkGamedInOrOut(at: indexPath.row)
+            tableView.reloadRows(at: [indexPath], with: .fade)
+        }
+        return [deleteAction, checkOutOrINAction]
+    }
     
     @IBAction func unwindToGameList(segue: UIStoryboardSegue) { }
 }

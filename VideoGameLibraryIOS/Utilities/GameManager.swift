@@ -35,6 +35,21 @@ class GameManager {
     func addGame(game: Game) {
         gameArray.append(game)
     }
+    func removeGame(at index: Int) {
+        gameArray.remove (at: index)
+    }
+    func checkGamedInOrOut(at index: Int) {
+        let gameForIndex = gameArray[index]
+        gameArray[index].checkedIn = !gameArray[index].checkedIn
+        
+        if gameForIndex.checkedIn {
+            // remove any existing due date
+        } else {
+            // add a new due date, since the game has just been checked out
+            gameForIndex.dueDate = Calendar.current.date(byAdding: .day, value: 14, to: Date())
+        }
+    
+    }
 }
 
 
