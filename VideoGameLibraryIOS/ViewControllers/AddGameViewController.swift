@@ -9,6 +9,24 @@
 import UIKit
 
 class AddGameViewController: UIViewController {
+
+    @IBOutlet weak var gameTitle: UILabel!
+ 
+    @IBOutlet weak var gameTitleTextField: UITextField!
+    
+    @IBOutlet weak var gameDescription: UILabel!
+    
+    @IBOutlet weak var gameDescriptionTextField: UITextView!
+   
+    @IBOutlet weak var ratingChoiceLabel: UILabel!
+    
+    @IBOutlet weak var ratingChoice: UISegmentedControl!
+    
+    @IBOutlet weak var genreChoiceLabel: UILabel!
+    
+    @IBOutlet weak var genreChoice: UIPickerView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +45,9 @@ class AddGameViewController: UIViewController {
      }
      */
     
+   // submits new game 
     @IBAction func submitButtonTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "unwindToGameList", sender: self)
+    self.performSegue(withIdentifier: "unwindToGameList", sender: self)
     }
 }
 

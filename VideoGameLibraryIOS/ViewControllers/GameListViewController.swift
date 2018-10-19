@@ -29,13 +29,17 @@ class GameListViewController: UIViewController, UITableViewDataSource, UITableVi
         let currentGame = GameManager.sharedInstance.getGame(at: indexPath.row)
         
         cell.titleLabel.text = currentGame.title
-        cell.genreLabel.text = currentGame.genre
+        cell.genreLabel.text = currentGame.title
         cell.ratingLabel.text = currentGame.rating
+        cell.dueDateLabel.text = currentGame.title
+        
+        
+        
         
         if currentGame.checkedIn {
-            cell.statusView.backgroundColor = UIColor.green
+            cell.statusLabel.backgroundColor = UIColor.green
         } else {
-            cell.statusView.backgroundColor = UIColor.red
+            cell.statusLabel.backgroundColor = UIColor.red
         }
         
         

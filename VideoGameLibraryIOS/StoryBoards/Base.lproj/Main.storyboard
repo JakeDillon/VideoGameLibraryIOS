@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B5e-uE-v45">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B5e-uE-v45">
                                 <rect key="frame" x="0.0" y="116" width="375" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -50,13 +50,13 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcd-NK-Ps3">
-                                                    <rect key="frame" x="242" y="10" width="42" height="21"/>
+                                                    <rect key="frame" x="233" y="10" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCP-s3-Xxb">
-                                                    <rect key="frame" x="242" y="118" width="95" height="21"/>
+                                                    <rect key="frame" x="233" y="118" width="104" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -69,12 +69,14 @@
                                                 <constraint firstAttribute="bottom" secondItem="AeU-kj-yTV" secondAttribute="bottom" id="WOO-gj-zsw"/>
                                                 <constraint firstItem="AeU-kj-yTV" firstAttribute="leading" secondItem="WCP-s3-Xxb" secondAttribute="trailing" constant="8" symbolic="YES" id="oPg-vq-ACr"/>
                                                 <constraint firstItem="AeU-kj-yTV" firstAttribute="top" secondItem="I0e-gL-0zt" secondAttribute="top" id="qYO-u9-evm"/>
+                                                <constraint firstItem="AeU-kj-yTV" firstAttribute="leading" secondItem="WCP-s3-Xxb" secondAttribute="trailing" constant="8" id="sjD-al-vN2"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="WCP-s3-Xxb" secondAttribute="bottom" id="ymb-Se-iX6"/>
+                                                <constraint firstItem="AeU-kj-yTV" firstAttribute="leading" secondItem="jcd-NK-Ps3" secondAttribute="trailing" constant="70" id="zkC-90-Qec"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dueDateLabel" destination="jcd-NK-Ps3" id="ZAx-UU-224"/>
-                                            <outlet property="genreLabel" destination="I0e-gL-0zt" id="VtG-go-Xj5"/>
+                                            <outlet property="genreLabel" destination="ChT-al-XVJ" id="Fxw-AA-ag0"/>
                                             <outlet property="ratingLabel" destination="WCP-s3-Xxb" id="DpC-ed-5y9"/>
                                             <outlet property="statusLabel" destination="AeU-kj-yTV" id="pAI-QP-yzx"/>
                                             <outlet property="titleLabel" destination="iYA-oC-ffT" id="mRO-VE-oRM"/>
@@ -111,7 +113,7 @@
         <!--Add Games-->
         <scene sceneID="eWh-DS-xuJ">
             <objects>
-                <viewController id="BH1-1D-NXb" sceneMemberID="viewController">
+                <viewController id="BH1-1D-NXb" customClass="AddGameViewController" customModule="VideoGameLibraryIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XUf-dX-M8O">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -182,8 +184,22 @@
                         <viewLayoutGuide key="safeArea" id="0i3-cI-fQ4"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Games" id="rdt-4v-LsV">
-                        <barButtonItem key="rightBarButtonItem" title="Submit" id="jef-J1-0Tq"/>
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="jef-J1-0Tq">
+                            <connections>
+                                <action selector="submitButtonTapped:" destination="BH1-1D-NXb" id="gaL-T5-w8m"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="gameDescription" destination="Nht-Za-W6o" id="UKh-fT-9HX"/>
+                        <outlet property="gameDescriptionTextField" destination="wom-XO-RAB" id="p11-H2-POD"/>
+                        <outlet property="gameTitle" destination="Tfx-jN-DLq" id="PWE-vR-OmV"/>
+                        <outlet property="gameTitleTextField" destination="gIR-Pc-RTx" id="LsT-MD-LCW"/>
+                        <outlet property="genreChoice" destination="ybv-gJ-ys7" id="S2u-uq-1Q2"/>
+                        <outlet property="genreChoiceLabel" destination="U7U-BG-SlE" id="gec-ba-GHw"/>
+                        <outlet property="ratingChoice" destination="loi-Lt-eZ5" id="eoY-76-xDI"/>
+                        <outlet property="ratingChoiceLabel" destination="sgb-6j-9hZ" id="UpB-Rp-Ib5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DK5-KJ-NEl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

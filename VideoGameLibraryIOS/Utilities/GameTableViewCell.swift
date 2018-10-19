@@ -12,7 +12,7 @@ class GameTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var genreLabel: UIView!
+    @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var statusLabel: UIView!
