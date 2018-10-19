@@ -8,7 +8,8 @@
 
 import UIKit
 
-class AddGameViewController: UIViewController {
+class AddGameViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
 
     @IBOutlet weak var gameTitle: UILabel!
  
@@ -49,5 +50,13 @@ class AddGameViewController: UIViewController {
     @IBAction func submitButtonTapped(_ sender: Any) {
     self.performSegue(withIdentifier: "unwindToGameList", sender: self)
     }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        retrun 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 
+    }
+    
 }
 
