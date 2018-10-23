@@ -13,7 +13,6 @@ class AddGameViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     
     
-    let genres = ["Action", "RPG", "Puzzle", "Racing"]
     
     @IBOutlet weak var gameTitle: UILabel!
     
@@ -30,6 +29,10 @@ class AddGameViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var genreChoiceLabel: UILabel!
     
     @IBOutlet weak var genreChoice: UIPickerView!
+    
+    let genres = ["Action", "RPG", "Puzzle", "Racing"]
+    
+    
     
     
     
@@ -99,15 +102,15 @@ class AddGameViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         alertController.addAction(closeAction)
         self.present(alertController, animated: true, completion: nil)
     }
-        func numberOfComponents(in pickerView: UIPickerView) -> Int {
-            return 1
-        }
-        func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-            return genres[row]
-        }
-        func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-            return genres.count
-        }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return genres[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return genres.count
+    }
     
 }
 

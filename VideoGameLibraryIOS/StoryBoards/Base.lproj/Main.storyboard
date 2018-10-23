@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -105,6 +106,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="gameListTableView" destination="B5e-uE-v45" id="yUQ-rQ-JLB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -142,7 +146,6 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wom-XO-RAB">
                                         <rect key="frame" x="0.0" y="197" width="375" height="69"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -170,6 +173,10 @@
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybv-gJ-ys7">
                                         <rect key="frame" x="0.0" y="335" width="375" height="216"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BH1-1D-NXb" id="Hxw-aZ-y1E"/>
+                                            <outlet property="delegate" destination="BH1-1D-NXb" id="2sK-mS-BFE"/>
+                                        </connections>
                                     </pickerView>
                                 </subviews>
                             </stackView>
@@ -199,9 +206,11 @@
                         <outlet property="genreChoiceLabel" destination="U7U-BG-SlE" id="gec-ba-GHw"/>
                         <outlet property="ratingChoice" destination="loi-Lt-eZ5" id="eoY-76-xDI"/>
                         <outlet property="ratingChoiceLabel" destination="sgb-6j-9hZ" id="UpB-Rp-Ib5"/>
+                        <segue destination="Fmb-Wi-7Xn" kind="unwind" identifier="unwindToGameList" unwindAction="unwindToGameListWithSegue:" id="r7w-iX-NQF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DK5-KJ-NEl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Fmb-Wi-7Xn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1814" y="-564"/>
         </scene>

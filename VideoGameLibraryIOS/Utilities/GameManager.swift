@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import RealmSwift
 
 class GameManager {
     //Shared instance of the GameManager class
@@ -15,11 +15,11 @@ class GameManager {
     
     //We are creating a private initializer so that no instances of this class can be made anywhere else
     private init() {
-        gameArray[0].dueDate = Date()
+        gameArray = realm.objects(Game.self)
     }
     
     //The array of games that will be used throughout the application
-    private var gameArray = Results<Game>!
+    private var gameArray: Results<Game>!
     
     //referance to the local realm database
     let realm = try! Realm()
@@ -36,7 +36,9 @@ class GameManager {
     
     //Function to add a game to the game library
     func addGame(game: Game) {
-        gameArray.append(game)
+        try! realm.write {
+            realm.add(game)
+        }
     }
     // Function to remove games from library
     //function to remove a game from a library
