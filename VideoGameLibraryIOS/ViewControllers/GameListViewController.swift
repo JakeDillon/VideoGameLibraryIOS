@@ -64,7 +64,7 @@ class GameListViewController: UIViewController, UITableViewDataSource, UITableVi
         let title = gameForIndex.checkedIn ? "Checked Out" : "Checked In"
         let checkOutOrINAction = UITableViewRowAction(style: .normal, title: title) {
             _, _ in
-            GameManager.sharedInstance.checkGamedInOrOut(at: indexPath.row)
+            GameManager.sharedInstance.checkGameInOrOut(at: indexPath.row)
             tableView.reloadRows(at: [indexPath], with: .fade)
         }
         return [deleteAction, checkOutOrINAction]

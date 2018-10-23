@@ -19,7 +19,10 @@ class GameManager {
     }
     
     //The array of games that will be used throughout the application
-    private var gameArray = [Game(title: "Far Cry 5", description: "", genre: "Shooter", rating: "M"), Game(title: "WWE 2K19", description: "", genre: "Fighting", rating: "T"), Game(title: "Def Jam Vendetta", description: "", genre: "Fighting", rating: "T")]
+    private var gameArray = Results<Game>!
+    
+    //referance to the local realm database
+    let realm = try! Realm()
     
     //Function to get the number of games we have
     func getGameCount() -> Int {
@@ -35,20 +38,26 @@ class GameManager {
     func addGame(game: Game) {
         gameArray.append(game)
     }
+    // Function to remove games from library
+    //function to remove a game from a library
     func removeGame(at index: Int) {
-        gameArray.remove (at: index)
-    }
-    func checkGamedInOrOut(at index: Int) {
-        let gameForIndex = gameArray[index]
-        gameArray[index].checkedIn = !gameArray[index].checkedIn
-        
-        if gameForIndex.checkedIn {
-            // remove any existing due date
-        } else {
-            // add a new due date, since the game has just been checked out
-            gameForIndex.dueDate = Calendar.current.date(byAdding: .day, value: 14, to: Date())
+        try! realm.write {
+            realm.delete(getGame(at: index))
         }
+    }
     
+    //function to check in or out a game
+    func checkGameInOrOut(at index: Int) {
+        let gameForIndex = gameArray[index]
+        try! realm.write {
+            gameForIndex.checkedIn = !gameForIndex.checkedIn
+            
+            if gameForIndex.checkedIn {
+                gameForIndex.dueDate = nil
+            } else {
+                gameForIndex.dueDate = Calendar.current.date(byAdding: .day, value: 14, to: Date())
+            }
+        }
     }
 }
 

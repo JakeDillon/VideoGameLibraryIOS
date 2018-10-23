@@ -8,7 +8,8 @@
 
 import UIKit
 
-class AddGameViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddGameViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate{
+
     
     
     
@@ -54,7 +55,7 @@ class AddGameViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         guard let title = gameTitleTextField.text, title.trimmingCharacters(in: .whitespacesAndNewlines) != "", let gameDescription = gameDescriptionTextField.text, title.trimmingCharacters(in: .whitespacesAndNewlines) != "" else {
             return
         }
-        
+        // rating
         var rating: String!
         switch ratingChoice.selectedSegmentIndex {
         case 0:
@@ -71,14 +72,32 @@ class AddGameViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             rating = "E"
             
         }
+        
         let genre = genres[genreChoice.selectedRow(inComponent: 0)]
         
-        let newGame = Game(title: title, description: gameDescription, genre: genre, rating: rating)
+        let newGame = Game()
+        
+        
+        //setting the properties for the new game using dot notation
+        newGame.title = title
+        newGame.gameDescription = gameDescription
+        newGame.genre = genre
+        newGame.rating = rating
         
         GameManager.sharedInstance.addGame(game: newGame)
         
         self.performSegue(withIdentifier: "unwindToGameList", sender: self)
+    
         
+    }
+    func showErrorAlert() {
+        let alertController = UIAlertController(title: "ERROR", message: "You must enter a title and description for the game.", preferredStyle: .actionSheet)
+        let closeAction = UIAlertAction(title: "Close", style: .default) { _ in
+            self.gameTitleTextField.text = ""
+            self.gameDescriptionTextField.text = ""
+        }
+        alertController.addAction(closeAction)
+        self.present(alertController, animated: true, completion: nil)
     }
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
             return 1
